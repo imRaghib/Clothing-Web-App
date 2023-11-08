@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   signInUser,
   createUserDoc,
@@ -17,17 +17,14 @@ const SignInForm = () => {
   const { email, password } = formField;
 
   const signInGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    createUserDoc(user);
+    await signInWithGooglePopup();
   };
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { user } = await signInUser(email, password);
-      createUserDoc(user);
-      if (user != null) alert("Signed Up Champ!");
+      await signInUser(email, password);
     } catch (error) {
       alert(error.message);
     }
@@ -56,6 +53,7 @@ const SignInForm = () => {
 
         <FormInput
           label="Password"
+          type="password"
           required
           onChange={handleOnChange}
           name="password"
