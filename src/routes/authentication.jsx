@@ -13,7 +13,6 @@ const Authentication = () => {
         }}
       >
         <SignInForm />
-
         <SignUpForm />
       </div>
     </>
