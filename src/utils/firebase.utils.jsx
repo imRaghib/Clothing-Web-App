@@ -9,7 +9,17 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -36,6 +46,26 @@ export const signInWithGoogleRedirect = () =>
 
 // Initialize Database
 export const db = getFirestore();
+
+export const addCollectionAndDocuments = async (
+  collectionName,
+  documentstoAdd
+) => {
+  const collectionRef = collection(db, collectionName);
+  const batch = writeBatch(db);
+
+  documentstoAdd.forEach((document) => {
+    const docRef = doc(collectionRef, document.title.toLowerCase()); // doc.title.toLowerCase() this will set as the document name
+    batch.set(docRef, document); // this will batch each doc creation call and if one fails, it will cancel all.
+  });
+
+  await batch.commit();
+  console.log("Successful");
+};
+
+export const getCategoriesAndDocuments = async () => {
+  const collectRef = collection(db, "CATEGORIES");
+};
 
 export const createUserDoc = async (userAuth, additionalInfo = {}) => {
   const userDocRef = doc(db, "USERS", userAuth.uid);
