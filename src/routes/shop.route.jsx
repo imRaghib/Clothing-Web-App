@@ -7,7 +7,7 @@ const Shop = () => {
   const { categoriesMap } = useContext(CategoriesContext);
   return (
     <>
-      {/* {Object.keys(categoriesMap).map((title) => (
+      {Object.keys(categoriesMap).map((title) => (
         <div key={title}>
           <h2>{title}</h2>
           <div className="products-container">
@@ -16,7 +16,7 @@ const Shop = () => {
             ))}
           </div>
         </div>
-      ))} */}
+      ))}
     </>
   );
 };
