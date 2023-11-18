@@ -4,10 +4,15 @@ import {
   BackgroundImage,
 } from "./category-item.styles";
 
+import { useNavigate } from "react-router-dom";
+
 const CategoryItem = ({ category }) => {
-  const { title, imageUrl } = category;
+  const { title, imageUrl, route } = category;
+  const navigate = useNavigate();
+
+  const handleNavigate = () => navigate(route);
   return (
-    <CategoryItemContainer>
+    <CategoryItemContainer onClick={handleNavigate}>
       <BackgroundImage imageUrl={imageUrl} />
       <CategoryItemBody>
         <h2>{title}</h2>
