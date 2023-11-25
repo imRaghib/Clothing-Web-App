@@ -13,7 +13,7 @@ const CategoryItem = ({ category }) => {
   const handleNavigate = () => navigate(route);
   return (
     <CategoryItemContainer onClick={handleNavigate}>
-      <BackgroundImage imageUrl={imageUrl} />
+      <BackgroundImage imageurl={imageUrl} />
       <CategoryItemBody>
         <h2>{title}</h2>
         <p>Shop Now</p>
