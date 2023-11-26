@@ -44,7 +44,24 @@ export const CartContext = createContext({
   itemCount: 0,
   removeItemFromCart: () => {},
   clearItemFromCart: () => {},
+  total: 0,
 });
+
+const INITIAL_STATE = {
+  isCartOpen: false,
+  cartItems: [],
+  itemCount: 0, //cartCount
+  total: 0, //cartTotal
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    default:
+      throw new Error(`unhandled type of ${type} in cartReducer`);
+  }
+};
 
 export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
